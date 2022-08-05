@@ -3,17 +3,15 @@
 
 int main(void)
 {
-    // user input
     int n;
     do
     {
         n = get_int("Size: ");
     } while (n < 1 || n > 8);
 
-    // Pyramide
+
     for (int i = 0; i < n; i++)
     {
-
         for (int j = 0; j < n - i; j++)
         {
             printf(" ");
@@ -21,7 +19,6 @@ int main(void)
 
         for (int j = 0; j < i + 1; j++)
         {
-
             printf("#");
         }
 
@@ -29,10 +26,9 @@ int main(void)
 
         for (int j = 0; j < i + 1; j++)
         {
-
             printf("#");
         }
-
         printf("\n");
     }
+
 }

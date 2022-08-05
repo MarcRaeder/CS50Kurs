@@ -3,81 +3,79 @@
 
 int main(void)
 {
-    // input creditcard number
-    long n = get_long("Creditcardnumber: ");
 
-    // Count lenght of Creditcardnumber
-    int i = 0;
-    long cc = n;
-    while (cc > 0)
+    long creditcardnumber = get_long("Creditcardnumber: ");
+
+    int numberofdigits = 0;
+    long usedcreditcardnumber = creditcardnumber;
+    while (usedcreditcardnumber > 0)
     {
-        cc = cc / 10;
-        i++;
+        usedcreditcardnumber = usedcreditcardnumber / 10;
+        numberofdigits++;
     }
 
-    // Check the lenght
-    if (i != 13 && i != 15 && i != 16)
+    if (numberofdigits != 13 && numberofdigits != 15 && numberofdigits != 16)
     {
         printf("INVALID\n");
+
         return 0;
     }
 
-    // Calculate checksum
     int sum1 = 0;
     int sum2 = 0;
-    long x = n;
+    long x = creditcardnumber;
     int total = 0;
-    int mod1;
-    int mod2;
-    int d1;
-    int d2;
+    int modulofirstdigit;
+    int moduloseconddigit;
+    int digit1;
+    int digit2;
     do
     {
-        // Remove last digit and add to sum1
-        mod1 = x % 10;
+
+        modulofirstdigit = x % 10;
         x = x / 10;
-        sum1 = sum1 + mod1;
-        // Remove second last digit
-        mod2 = x % 10;
+        sum1 = sum1 + modulofirstdigit;
+
+        moduloseconddigit = x % 10;
         x = x / 10;
-        // Double second last digit and add digits to sum2
-        mod2 = mod2 * 2;
-        d1 = mod2 % 10;
-        d2 = mod2 / 10;
-        sum2 = sum2 + d1 + d2;
+
+        moduloseconddigit = moduloseconddigit * 2;
+        digit1 = moduloseconddigit % 10;
+        digit2 = moduloseconddigit / 10;
+        sum2 = sum2 + digit1 + digit2;
+
     } while (x > 0);
+
     total = sum1 + sum2;
 
-    // checking Invalid
     if (total % 10 != 0)
     {
         printf("INVALID\n");
         return 0;
     }
 
-    // Get starting digits
-    long start = n;
+    long start = creditcardnumber;
     do
     {
         start = start / 10;
     } while (start > 100);
 
-    // Next check starting digits for card type
-    if ((start / 10 == 5) && (0 < start % 10 && start % 10 < 6))
+    bool numberFitsMASTERCARDCriteria = start / 10 == 5 && 0 < start % 10 && start % 10 < 6;
+    bool numberFitsAMEXCriteria = start / 10 == 3 && start % 10 == 4 || start % 10 == 7;
+    bool numberFitsVISACriteria = start / 10 == 4;
+
+    if (numberFitsMASTERCARDCriteria)
     {
         printf("MASTERCARD\n");
     }
-
-    else if ((start / 10 == 3) && (start % 10 == 4 || start % 10 == 7))
+    else if (numberFitsAMEXCriteria)
     {
         printf("AMEX\n");
     }
-
-    else if (start / 10 == 4)
+    else if (numberFitsVISACriteria)
     {
         printf("VISA\n");
     }
-
     else
     {
         printf("INVALID\n");
