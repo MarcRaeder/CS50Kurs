@@ -11,7 +11,6 @@ int main(void)
 {
     // Ask how many cents the customer is owed
     int cents = get_cents();
-    
 
     // Calculate the number of quarters to give the customer
     int quarters = calculate_quarters(cents);
@@ -35,7 +34,7 @@ int main(void)
     // Print total number of coins to give the customer
     printf("%i\n", coins);
 }
-//input abfrage
+// input abfrage
 int get_cents(void)
 {
     int cents;
@@ -43,7 +42,7 @@ int get_cents(void)
     {
         cents = get_int("Enter Cents Owed: ");
     } while (cents < 0);
-    
+
     return cents;
 }
 
@@ -56,7 +55,7 @@ int calculate_quarters(int cents)
         quarters++;
         cents = cents - 25;
     }
-    
+
     return quarters;
 }
 
@@ -68,7 +67,7 @@ int calculate_dimes(int cents)
         dimes++;
         cents = cents - 10;
     }
-    
+
     return dimes;
 }
 
