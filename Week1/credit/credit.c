@@ -23,28 +23,29 @@ int main(void)
 
     int sum1 = 0;
     int sum2 = 0;
-    long x = creditcardnumber;
+    long ccn = creditcardnumber;
     int total = 0;
     int modulofirstdigit;
     int moduloseconddigit;
     int digit1;
     int digit2;
+    
     do
     {
 
-        modulofirstdigit = x % 10;
-        x = x / 10;
+        modulofirstdigit = ccn % 10;
+        ccn = ccn / 10;
         sum1 = sum1 + modulofirstdigit;
 
-        moduloseconddigit = x % 10;
-        x = x / 10;
+        moduloseconddigit = ccn % 10;
+        ccn = ccn / 10;
 
         moduloseconddigit = moduloseconddigit * 2;
         digit1 = moduloseconddigit % 10;
         digit2 = moduloseconddigit / 10;
         sum2 = sum2 + digit1 + digit2;
 
-    } while (x > 0);
+    } while (ccn > 0);
 
     total = sum1 + sum2;
 
