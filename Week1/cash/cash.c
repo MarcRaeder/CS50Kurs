@@ -9,7 +9,6 @@ int pennies = 0;
 
 int main(void)
 {
-
     int cents = get_cents();
 
     int quarters = calculate_quarters(cents);

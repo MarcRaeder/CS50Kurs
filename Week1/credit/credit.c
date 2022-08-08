@@ -3,7 +3,6 @@
 
 int main(void)
 {
-
     long creditcardnumber = get_long("Creditcardnumber: ");
 
     int numberofdigits = 0;
@@ -29,10 +28,9 @@ int main(void)
     int moduloseconddigit;
     int digit1;
     int digit2;
-    
+
     do
     {
-
         modulofirstdigit = ccn % 10;
         ccn = ccn / 10;
         sum1 = sum1 + modulofirstdigit;
