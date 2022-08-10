@@ -20,8 +20,8 @@ int main(void)
     int words = count_words(text);
     int sentences = count_sentences(text);
     printLettersWordsSentences(text);
-    float L = (float) letters / (float) words * 100;
-    float S = (float) sentences / (float) words * 100;
+    float L = (float)letters / (float)words * 100;
+    float S = (float)sentences / (float)words * 100;
     int index = round(0.0588 * L - 0.296 * S - 15.8);
 
     if (index < 1)
@@ -36,44 +36,42 @@ int main(void)
     {
         printf("Grade %i\n", index);
     }
-    
 }
 int count_letters(string text)
 {
     for (int i = 0; i < strlen(text); i++)
+    {
+        if (isalpha(text[i]))
         {
-            if (isalpha(text[i]))
-            {
-                letters++;
-            }
+            letters++;
         }
-    
+    }
+
     return letters;
 }
 int count_words(string text)
 {
     for (int i = 0; i < strlen(text); i++)
+    {
+        if (text[i] == ' ')
         {
-            if (text[i] == ' ')
-            {
-                words++;
-            }            
+            words++;
         }
-    
+    }
+
     return words;
-    
 }
 int count_sentences(string text)
 {
     for (int i = 0; i < strlen(text); i++)
+    {
+        if (text[i] == '.' || text[i] == '?' || text[i] == '!')
         {
-            if (text[i] == '.' || text[i] == '?' || text[i] == '!')
-            {
-                sentences++;
-            }           
+            sentences++;
         }
-    
-    return sentences;   
+    }
+
+    return sentences;
 }
 string printLettersWordsSentences(string text)
 {

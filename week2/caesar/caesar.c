@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main(int argc, string argv[]) 
+int main(int argc, string argv[])
 {
     if (argc != 2)
     {
@@ -12,38 +12,35 @@ int main(int argc, string argv[])
         return 1;
     }
 
-int arg_length = strlen(argv[1]);    
+    int arg_length = strlen(argv[1]);
 
-for (int i = 0; i < arg_length; i++)  
-{
-    if (!isdigit(argv[1][i]))  
+    for (int i = 0; i < arg_length; i++)
     {
-        printf("Usage: ./caesar key");  
-        return 1;
-    }
-}
-
-int key = atoi(argv[1]); 
-string plaintext = get_string("plaintext: ");  
-printf("%i", key);
-printf("ciphertext: ");     
-int plaintext_length = strlen(plaintext);  
-for (int i = 0; i < plaintext_length; i++)  
-{
-    if (isupper(plaintext[i]))   
-    {
-        printf("%c", (((plaintext[i] - 65) + key) % 26) + 65);   
-    }
-    else if (islower(plaintext[i]))  
-    {
-        printf("%c", (((plaintext[i] - 97) + key) % 26) + 97);  
-    }
-    else                       
-    {
-        printf("%c", plaintext[i]);
+        if (!isdigit(argv[1][i]))
+        {
+            printf("Usage: ./caesar key");
+            return 1;
+        }
     }
 
-}
-printf("\n");  
-
+    int key = atoi(argv[1]);
+    string plaintext = get_string("plaintext: ");
+    printf("ciphertext: ");
+    int plaintext_length = strlen(plaintext);
+    for (int i = 0; i < plaintext_length; i++)
+    {
+        if (isupper(plaintext[i]))
+        {
+            printf("%c", (((plaintext[i] - 65) + key) % 26) + 65);
+        }
+        else if (islower(plaintext[i]))
+        {
+            printf("%c", (((plaintext[i] - 97) + key) % 26) + 97);
+        }
+        else
+        {
+            printf("%c", plaintext[i]);
+        }
+    }
+    printf("\n");
 }
