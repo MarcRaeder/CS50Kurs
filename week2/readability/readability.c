@@ -54,19 +54,18 @@ int count_letters(string text, int letters, int i)
     }
 
     return letters;
-
 }
+
 int count_words(string text, int words, int i)
 {   
     if (text[i] == ' ')
     {
         words++;
     }
-    
 
     return words;
-
 }
+
 int count_sentences(string text, int sentences, int i)
 {
     if (text[i] == '.' || text[i] == '?' || text[i] == '!')
