@@ -68,7 +68,9 @@ int main(int argc, string argv[])
       printf("%c", key[letter] + 32);
     }
     else
+    {
       printf("%c", plaintext[i]);
-  }
+    }
+  
   printf("\n");
 }
