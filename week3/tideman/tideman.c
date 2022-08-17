@@ -4,9 +4,8 @@
 
 #define MAX 9
 
-int preferences[MAX][MAX];
-
 bool locked[MAX][MAX];
+int preferences[MAX][MAX];
 
 typedef struct
 {
@@ -17,43 +16,16 @@ typedef struct
 string candidates[MAX];
 pair pairs[MAX * (MAX - 1) / 2];
 
-int pair_count;
 int candidate_count;
+int pair_count;
 
-bool vote(int rank, string name, int ranks[]);
-void record_preferences(int ranks[]);
 void add_pairs(void);
-void sort_pairs(void);
+bool hasCycle(int winner, int loser);
 void lock_pairs(void);
 void print_winner(void);
-
-bool hasCycle(int winner, int loser)
-{
-    while (winner != -1 && winner != loser)
-    {
-        bool found = false;
-
-        for (int i = 0; i < candidate_count; i++)
-        {
-            if (locked[i][winner])
-            {
-                found = true;
-                winner = i;
-            }
-        }
-
-        if (!found)
-        {
-            winner = -1;
-        }
-    }
-
-    if (winner == loser)
-    {
-        return true;
-    }
-    return false;
-}
+void record_preferences(int ranks[]);
+void sort_pairs(void);
+bool vote(int rank, string name, int ranks[]);
 
 int main(int argc, string argv[])
 {
@@ -190,6 +162,34 @@ void sort_pairs(void)
     }
 }
 
+bool hasCycle(int winner, int loser)
+{
+    while (winner != -1 && winner != loser)
+    {
+        bool found = false;
+
+        for (int i = 0; i < candidate_count; i++)
+        {
+            if (locked[i][winner])
+            {
+                found = true;
+                winner = i;
+            }
+        }
+
+        if (!found)
+        {
+            winner = -1;
+        }
+    }
+
+    if (winner == loser)
+    {
+        return true;
+    }
+    return false;
+}
+
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
@@ -199,6 +199,7 @@ void lock_pairs(void)
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
     }
+
     return;
 }
 
@@ -222,5 +223,6 @@ void print_winner(void)
             return;
         }
     }
+    
     return;
 }
