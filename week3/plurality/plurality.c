@@ -31,6 +31,7 @@ int main(int argc, string argv[])
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
+
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i].name = argv[i + 1];
@@ -56,8 +57,8 @@ bool vote(string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        bool NameEqualName = strcmp(candidates[i].name, name) == 0;
-        if (NameEqualName)
+        bool candidate_exists = strcmp(candidates[i].name, name) == 0;
+        if (candidate_exists)
         {
             candidates[i].votes++;
             return true;

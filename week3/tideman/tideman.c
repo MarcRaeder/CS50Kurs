@@ -19,13 +19,13 @@ pair pairs[MAX * (MAX - 1) / 2];
 int candidate_count;
 int pair_count;
 
-void add_pairs(void);
 bool hasCycle(int winner, int loser);
+bool vote(int rank, string name, int ranks[]);
+void add_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
 void record_preferences(int ranks[]);
 void sort_pairs(void);
-bool vote(int rank, string name, int ranks[]);
 
 int main(int argc, string argv[])
 {
@@ -41,7 +41,7 @@ int main(int argc, string argv[])
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
-    
+
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i] = argv[i + 1];
@@ -82,6 +82,7 @@ int main(int argc, string argv[])
     sort_pairs();
     lock_pairs();
     print_winner();
+
     return 0;
 }
 
@@ -89,7 +90,8 @@ bool vote(int rank, string name, int ranks[])
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[i], name) == 0)
+        bool candidate_exists = strcmp(candidates[i], name) == 0;
+        if (candidate_exists)
         {
             ranks[rank] = i;
             return true;
@@ -118,7 +120,8 @@ void add_pairs(void)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
-            if (preferences[i][j] != preferences[j][i])
+            bool compare_preferences = preferences[i][j] != preferences[j][i];
+            if (compare_preferences)
             {
                 pair p;
                 if (preferences[i][j] > preferences[j][i])
@@ -145,15 +148,15 @@ void sort_pairs(void)
     for (int i = 0; i < pair_count; i++)
     {
         int max_index = i;
-        int current_strenght = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
+        int current_strength = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
 
         for (int j = i + 1; j < pair_count; j++)
         {
             int temp_strenght = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
-            if (temp_strenght > current_strenght)
+            if (temp_strenght > current_strength)
             {
                 max_index = j;
-                current_strenght = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
+                current_strength = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
             }
         }
 
@@ -188,6 +191,7 @@ bool hasCycle(int winner, int loser)
     {
         return true;
     }
+
     return false;
 }
 

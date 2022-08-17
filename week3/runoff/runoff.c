@@ -12,20 +12,19 @@ typedef struct
     string name;
     int votes;
     bool eliminated;
-}
-candidate;
+} candidate;
 
 candidate candidates[MAX_CANDIDATES];
 
 int candidate_count;
 int voter_count;
 
-void eliminate(int min);
-int find_min(void);
 bool is_tie(int min);
 bool print_winner(void);
-void tabulate(void);
 bool vote(int voter, int rank, string name);
+int find_min(void);
+void eliminate(int min);
+void tabulate(void);
 
 int main(int argc, string argv[])
 {
@@ -41,6 +40,7 @@ int main(int argc, string argv[])
         printf("Maximum number of candidates is %i\n", MAX_CANDIDATES);
         return 2;
     }
+
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i].name = argv[i + 1];
@@ -57,7 +57,6 @@ int main(int argc, string argv[])
 
     for (int i = 0; i < voter_count; i++)
     {
-
         for (int j = 0; j < candidate_count; j++)
         {
             string name = get_string("Rank %i: ", j + 1);
@@ -111,7 +110,8 @@ bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[i].name, name) == 0)
+        bool candidate_exists = strcmp(candidates[i].name, name) == 0;
+        if (candidate_exists)
         {
             preferences[voter][rank] = i;
             return true;
@@ -158,7 +158,8 @@ int find_min(void)
     int min = voter_count;
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes < min && candidates[i].eliminated == false) 
+        bool current_candidate_with_lowest_votes = candidates[i].votes < min && candidates[i].eliminated == false;
+        if (current_candidate_with_lowest_votes) 
         {
             min = candidates[i].votes;
         }
@@ -184,7 +185,7 @@ bool is_tie(int min)
         }
     }
     
-    return false;
+    return eliminate == counter;
 }
 
 void eliminate(int min)
