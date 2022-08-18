@@ -19,7 +19,7 @@ pair pairs[MAX * (MAX - 1) / 2];
 int candidate_count;
 int pair_count;
 
-bool hasCycle(int winner, int loser);
+bool has_cycle(int winner, int loser);
 bool vote(int rank, string name, int ranks[]);
 void add_pairs(void);
 void lock_pairs(void);
@@ -152,8 +152,8 @@ void sort_pairs(void)
 
         for (int j = i + 1; j < pair_count; j++)
         {
-            int temp_strenght = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
-            if (temp_strenght > current_strength)
+            int temp_strength = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
+            if (temp_strength > current_strength)
             {
                 max_index = j;
                 current_strength = preferences[pairs[j].winner][pairs[j].loser] - preferences[pairs[j].loser][pairs[j].winner];
@@ -166,7 +166,7 @@ void sort_pairs(void)
     }
 }
 
-bool hasCycle(int winner, int loser)
+bool has_cycle(int winner, int loser)
 {
     while (winner != -1 && winner != loser)
     {
@@ -199,7 +199,7 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if (!hasCycle(pairs[i].winner, pairs[i].loser))
+        if (!has_cycle(pairs[i].winner, pairs[i].loser))
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
