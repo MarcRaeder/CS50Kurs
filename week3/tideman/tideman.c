@@ -164,6 +164,8 @@ void sort_pairs(void)
         pairs[max_index] = pairs[i];
         pairs[i] = temp;
     }
+
+    return;
 }
 
 bool has_cycle(int winner, int loser)
