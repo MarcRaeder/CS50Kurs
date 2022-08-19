@@ -4,22 +4,29 @@
 #include <string.h>
 #include <math.h>
 
-int letters = 0;
-int words = 1;
-int sentences = 0;
-
-int count_letters(string text);
-int count_words(string text);
-int count_sentences(string text);
-string printLettersWordsSentences();
+int count_letters(string text, int letters, int i);
+int count_words(string text, int words, int i);
+int count_sentences(string text, int sentences, int i);
 
 int main(void)
 {
+    int letters = 0;
+    int words = 1;
+    int sentences = 0;
+
     string text = get_string("Text: ");
-    int letters = count_letters(text);
-    int words = count_words(text);
-    int sentences = count_sentences(text);
-    printLettersWordsSentences(text);
+
+    for (int i = 0; i < strlen(text); i++)
+    {   
+        letters = count_letters(text, letters, i);
+        words = count_words(text, words, i);
+        sentences = count_sentences(text, sentences, i);
+    }
+    
+    printf("%i letters\n", letters);
+    printf("%i words\n", words);
+    printf("%i sentences\n", sentences);
+
     float L = (float)letters / (float)words * 100;
     float S = (float)sentences / (float)words * 100;
     int index = round(0.0588 * L - 0.296 * S - 15.8);
@@ -37,48 +44,34 @@ int main(void)
         printf("Grade %i\n", index);
     }
 }
-int count_letters(string text)
-{
-    for (int i = 0; i < strlen(text); i++)
+
+int count_letters(string text, int letters, int i)
+{   
+    if (isalpha(text[i]))
     {
-        if (isalpha(text[i]))
-        {
-            letters++;
-        }
+        letters++;
+    
     }
 
     return letters;
 }
-int count_words(string text)
-{
-    for (int i = 0; i < strlen(text); i++)
+
+int count_words(string text, int words, int i)
+{   
+    if (text[i] == ' ')
     {
-        if (text[i] == ' ')
-        {
-            words++;
-        }
+        words++;
     }
 
     return words;
 }
-int count_sentences(string text)
+
+int count_sentences(string text, int sentences, int i)
 {
-    for (int i = 0; i < strlen(text); i++)
+    if (text[i] == '.' || text[i] == '?' || text[i] == '!')
     {
-        if (text[i] == '.' || text[i] == '?' || text[i] == '!')
-        {
-            sentences++;
-        }
+        sentences++;
     }
 
     return sentences;
-}
-string printLettersWordsSentences(string text)
-{
-    printf("%s\n", text);
-    printf("%i letters\n", letters);
-    printf("%i words\n", words);
-    printf("%i sentences\n", sentences);
-
-    return 0;
 }

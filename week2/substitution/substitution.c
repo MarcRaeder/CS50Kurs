@@ -8,6 +8,7 @@ int main(int argc, string argv[])
   if (argc != 2)
   {
     printf("Usage: ./substitution key\n");
+
     return 1;
   }
 
@@ -17,6 +18,7 @@ int main(int argc, string argv[])
     if (!isalpha(key[i]))
     {
       printf("only use letters\n");
+
       return 1;
     }
   }
@@ -24,6 +26,7 @@ int main(int argc, string argv[])
   if (strlen(key) != 26)
   {
     printf("Key must contain 26 characters.\n");
+
     return 1;
   }
 
@@ -34,6 +37,7 @@ int main(int argc, string argv[])
       if (toupper(key[i]) == toupper(key[j]))
       {
         printf("use each letter only once\n");
+        
         return 1;
       }
     }
@@ -45,7 +49,7 @@ int main(int argc, string argv[])
   {
     if (islower(key[i]))
     {
-      key[i] = key[i] - 32;
+      key[i] = toupper(key[i]);
     }
   }
 
@@ -64,7 +68,9 @@ int main(int argc, string argv[])
       printf("%c", key[letter] + 32);
     }
     else
+    {
       printf("%c", plaintext[i]);
-  }
+    }
+  
   printf("\n");
 }

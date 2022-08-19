@@ -8,8 +8,7 @@ typedef struct
 {
     string name;
     int votes;
-}
-candidate;
+} candidate;
 
 candidate candidates[MAX];
 
@@ -32,12 +31,13 @@ int main(int argc, string argv[])
         printf("Maximum number of candidates is %i\n", MAX);
         return 2;
     }
+
     for (int i = 0; i < candidate_count; i++)
     {
         candidates[i].name = argv[i + 1];
         candidates[i].votes = 0;
     }
-    
+
     int voter_count = get_int("Number of voters: ");
 
     for (int i = 0; i < voter_count; i++)
@@ -57,13 +57,14 @@ bool vote(string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[i].name, name) == 0)
+        bool candidate_exists = strcmp(candidates[i].name, name) == 0;
+        if (candidate_exists)
         {
             candidates[i].votes++;
             return true;
-        }        
+        }
     }
-       
+
     return false;
 }
 
@@ -76,16 +77,16 @@ void print_winner(void)
         if (candidates[i].votes > maximum_vote)
         {
             maximum_vote = candidates[i].votes;
-        }       
+        }
     }
-    
+
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == maximum_vote)
         {
             printf("%s\n", candidates[i].name);
-        }      
+        }
     }
-    
+
     return;
 }
