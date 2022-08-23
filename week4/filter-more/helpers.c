@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 void copy_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE copy[height][width]);
+void temp_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE temp[height][width]);
 
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -153,6 +154,13 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
+    temp_gets_image(height, width, image, temp);
+
+    return;
+}
+
+void temp_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE temp[height][width])
+{
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -162,9 +170,4 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtRed = temp[i][j].rgbtRed;
         }
     }
-
-    return;
 }
-
-
-
