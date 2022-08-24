@@ -26,8 +26,7 @@ int main(void)
     else
     {
         printf("Tie!\n");
-    }
-        
+    }       
 }
 
 int compute_score(string word)
@@ -40,7 +39,7 @@ int compute_score(string word)
         {
             score += POINTS[word[i] - 'A'];
         }
-        else if (islower(word[i]))
+        else
         {
             score += POINTS[word[i] - 'a'];
         }
