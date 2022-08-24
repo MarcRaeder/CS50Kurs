@@ -9,11 +9,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            float Red = image[i][j].rgbtRed;
-            float Green = image[i][j].rgbtGreen;
-            float Blue = image[i][j].rgbtBlue;
+            float red = image[i][j].rgbtRed;
+            float green = image[i][j].rgbtGreen;
+            float blue = image[i][j].rgbtBlue;
 
-            int average = round((Red + Green + Blue) / 3);
+            int average = round((red + green + blue) / 3);
             image[i][j].rgbtRed = image[i][j].rgbtGreen = image[i][j].rgbtBlue = average;
         }
     }
@@ -127,14 +127,14 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 void copy_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE copy[height][width])
 {
   for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
         {
-            for (int j = 0; j < width; j++)
-            {
-                image[i][j].rgbtRed = copy[i][j].rgbtRed;
-                image[i][j].rgbtGreen = copy[i][j].rgbtGreen;
-                image[i][j].rgbtBlue = copy[i][j].rgbtBlue;
-            }
-        }  
+            image[i][j].rgbtRed = copy[i][j].rgbtRed;
+            image[i][j].rgbtGreen = copy[i][j].rgbtGreen;
+            image[i][j].rgbtBlue = copy[i][j].rgbtBlue;
+        }
+    }  
 
-        return;
+    return;
 }
