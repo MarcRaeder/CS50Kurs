@@ -126,7 +126,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 void copy_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE copy[height][width])
 {
-  for (int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
@@ -134,7 +134,7 @@ void copy_gets_image(int height, int width, RGBTRIPLE image[height][width], RGBT
             image[i][j].rgbtGreen = copy[i][j].rgbtGreen;
             image[i][j].rgbtBlue = copy[i][j].rgbtBlue;
         }
-    }  
+    }
 
     return;
 }
