@@ -3,17 +3,19 @@ while True:
     if card > 0:
         break
 
+
 def luhn_checksum(card):
     def digits_of(n):
-        return[int(d) for d in str(n)]
+        return [int(d) for d in str(n)]
     digits = digits_of(card)
-    odd_digits = digits[-1 :: -2]
-    even_digits = digits[-2 :: -2]
+    odd_digits = digits[-1:: -2]
+    even_digits = digits[-2:: -2]
     checksum = 0
     checksum += sum(odd_digits)
     for d in even_digits:
         checksum += sum(digits_of(d * 2))
     return checksum % 10
+
 
 lenght = 0
 visa = card
@@ -26,7 +28,7 @@ while visa >= 10:
     visa = int(visa/10)
 
 while amex >= 10 ** 13:
-    amex = int(amex / 10 ** 13 )
+    amex = int(amex / 10 ** 13)
 
 while master >= 10 ** 14:
     master = int(master / 10 ** 14)

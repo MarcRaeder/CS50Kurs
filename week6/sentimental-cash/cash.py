@@ -1,5 +1,6 @@
 from shelve import DbfilenameShelf
 
+
 def main():
 
     while True:
@@ -11,7 +12,6 @@ def main():
                 print("cents have to be bigger than 0")
         except ValueError:
             print("only use numbers")
-        
 
     quarters = calculate_quarters(cents)
     cents -= quarters * 25
@@ -22,25 +22,29 @@ def main():
     nickles = calculate_nickles(cents)
     cents -= nickles * 5
 
-    pennies = cents 
+    pennies = cents
 
     coins = int(quarters + dimes + nickles + pennies)
 
     print(coins)
+
 
 def calculate_quarters(cents):
     quarters = cents // 25
 
     return quarters
 
+
 def calculate_dimes(cents):
     dimes = cents // 10
 
     return dimes
 
+
 def calculate_nickles(cents):
     nickles = cents // 5
 
     return nickles
+
 
 main()
