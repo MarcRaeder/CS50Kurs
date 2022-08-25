@@ -12,12 +12,12 @@ for i in text:
     elif i == "." or i == "!" or i == "?":
         sentences += 1
 
-index = 0.0588 * (letters / words * 100) - 0.296 * \
+coleman_liau_index = 0.0588 * (letters / words * 100) - 0.296 * \
     (sentences / words * 100) - 15.8
 
-if index < 1:
+if coleman_liau_index < 1:
     print("Before Grade 1 ")
-elif index >= 16:
+elif coleman_liau_index >= 16:
     print("Grade 16+")
 else:
-    print("Grade ", round(index))
+    print("Grade ", round(coleman_liau_index))

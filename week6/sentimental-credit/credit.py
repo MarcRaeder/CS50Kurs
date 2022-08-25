@@ -4,7 +4,7 @@ while True:
         break
 
 
-def luhn_checksum(card):
+def luhn_checksum(card:int) -> int:
     def digits_of(n):
         return [int(d) for d in str(n)]
     digits = digits_of(card)

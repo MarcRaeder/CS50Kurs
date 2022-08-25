@@ -41,7 +41,7 @@ def calculate_dimes(cents):
     return dimes
 
 
-def calculate_nickles(cents):
+def calculate_nickles(cents: int) -> int:
     nickles = cents // 5
 
     return nickles

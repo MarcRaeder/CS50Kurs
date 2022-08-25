@@ -12,11 +12,11 @@ def main():
         database = list(reader)
 
     with open(sys.argv[2]) as file2:
-        sequence = file2.read()
+        sequence: str = file2.read()
 
     matches = {}
     for i in database[0]:
-        matches[i] = (longest_match(sequence, i))
+        matches[i] = longest_match(sequence, i)
 
     suspect = 'No Match'
     suspect_counter = 1
@@ -37,12 +37,12 @@ def main():
 
     return
 
-def longest_match(sequence, subsequence):
+def longest_match(sequence: str , subsequence: str) -> str:
     """Returns length of longest run of subsequence in sequence."""
 
-    longest_run = 0
-    subsequence_length = len(subsequence)
-    sequence_length = len(sequence)
+    longest_run: int = 0
+    subsequence_length: int = len(subsequence)
+    sequence_length: int = len(sequence)
 
     for i in range(sequence_length):
 
