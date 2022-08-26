@@ -38,7 +38,7 @@ def simulate_game(team1: int, team2: int) -> int:
     return random.random() < probability
 
 
-def simulate_round(teams:list[str]) -> list[str]: 
+def simulate_round(teams: list[str]) -> list[str]: 
     """Simulate a round. Return a list of winning teams."""
     winners = []
 
@@ -52,7 +52,7 @@ def simulate_round(teams:list[str]) -> list[str]:
     return winners
 
 
-def simulate_tournament(teams:list) -> list:
+def simulate_tournament(teams: list) -> str:
     """Simulate a tournament. Return name of winning team."""
     while len(teams) > 1:
         teams = simulate_round(teams)

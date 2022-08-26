@@ -1,6 +1,3 @@
-from shelve import DbfilenameShelf
-
-
 def main():
 
     while True:

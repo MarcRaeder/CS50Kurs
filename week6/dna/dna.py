@@ -15,8 +15,8 @@ def main():
         sequence: str = file2.read()
 
     matches = {}
-    for i in database[0]:
-        matches[i] = longest_match(sequence, i)
+    for subsequence in database[0]:
+        matches[subsequence] = longest_match(sequence, subsequence)
 
     suspect = 'No Match'
     suspect_counter = 1
